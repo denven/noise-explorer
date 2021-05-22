@@ -1,0 +1,59 @@
+{
+  "name": "my-project",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@craco/craco": "^6.1.2",
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^11.1.0",
+    "@testing-library/user-event": "^12.1.10",
+    "axios": "^0.21.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-scripts": "4.0.3",
+    "web-vitals": "^1.0.1"
+  },
+  "scripts": {
+    "build:style": "tailwind build src/styles/index.css -o src/styles/tailwind.css",
+    "start": "craco start",
+    "build": "craco build",
+    "prettify": "yarn prettier \"**/*.*(js|jsx)\" --ignore-path=.prettierignore --write",
+    "lint": "eslint src --ext .js,.jsx && yarn prettify",
+    "test": "craco test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss7-compat": "^2.1.2",
+    "autoprefixer": "^9",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^7.26.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-babel": "^5.3.1",
+    "eslint-plugin-import": "^2.23.2",
+    "eslint-plugin-prettier": "^3.4.0",
+    "eslint-plugin-react": "^7.23.2",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "postcss": "^7",
+    "postcss-cli": "^8.3.1",
+    "prettier": "^2.3.0",
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat"
+  }
+}
