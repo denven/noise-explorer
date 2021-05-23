@@ -34,7 +34,7 @@ function App() {
       <Header />
       <Search />
       <Find />
-      {/* <div className="mt-4 h-1/3 border border-black"> <Map /></div> */}
+      <div className="mt-4 h-1/3 border border-black"> <NewMap /></div>
       {/* <Sound /> */}
 
       <Posts posts={[{name: 'Alex', rate: 'good'}, {name: 'Judy', rate: 'bad'}, {name: 'Bob', rate: 'worse'}]} />

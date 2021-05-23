@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import AutoComplete from 'react-google-autocomplete'
+import Magnifier from './assets/images/search.png'
+
 const fetch = require('isomorphic-fetch')
 const { compose, withProps, withHandlers, withStateHandlers } = require('recompose')
 const { InfoBox } = require('react-google-maps/lib/components/addons/InfoBox')
 const { withScriptjs, withGoogleMap, GoogleMap, Marker } = require('react-google-maps')
 const { MarkerClusterer } = require('react-google-maps/lib/components/addons/MarkerClusterer')
+
+let searchWidth = window.innerWidth - 32 * 2 - 10;
 
 const MapWithAMarkerClusterer = compose(
   withProps({
@@ -26,11 +30,14 @@ const MapWithAMarkerClusterer = compose(
 )((props) => (
   <GoogleMap defaultZoom={12} defaultCenter={{ lat: 25.0391667, lng: 121.525 }}>
     <AutoComplete
-      className={'border-2 border-yellow-500 block w-full p-2 mt-2 rounded md:w-1/3 m-auto'}
+      className={'absolute px-6 top-8 h-8 inset-l-4 mt-6 border border-black rounded-xl flex justify-start text-xs'}
+      style={{width: searchWidth}}
+      placeholder='enter your address here'
       onPlaceSelected={(place) => {
         console.log(place)
       }}
     />
+    <img className='absolute px-2 top-16 h-4 z-10' src={Magnifier} />
     <MarkerClusterer onClick={props.onMarkerClustererClick} averageCenter enableRetinaIcons gridSize={50}>
       {props.markers.map((marker) => (
         <Marker key={marker.photo_id} position={{ lat: marker.latitude, lng: marker.longitude }} />
