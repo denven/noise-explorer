@@ -8,45 +8,64 @@ import Time from '../assets/images/clock.png'
 const PostCard = ({content}) => {
   console.log(content)
   return (
-    <div className="w-full h-24 flex justify-between rounded-xl my-2">
+    <div className="py-2" style={{boxShadow: '0px 2px 2px rgba(0, 0, 0, 0.1)'}}>
+      <div className="w-full flex justify-between items-center rounded-xl">
 
-      <div className="left">
-        <div className='flex items-center'>
+      <div className="flex flex-col justify-between my-2">
+        <div className='flex items-center mb-1'>
           <div className="font-medium mr-1">Noise Level:</div>
-          <Amplify rate={'good'} />
+          <Amplify rate={content.rate} />
         </div>
+      </div>
+
+      <div className="right">
         <div className="number">
-          <span className='text-5xl' style={{color: '#BD3003'}}>108</span>
-          <span className='font-medium'>dbi</span>
+          <SoundVolune rate={content.rate} value={content.volume} />
+          <span className='font-medium pl-1'>dbi</span>
         </div>
+      </div>
+
+    </div>
+
+      <div className="flex justify-between">
+            <span className='text-xs font-light'>Afternoon: 9:00pm May 24</span>
+            <span className='font-light text-xs pr-6'>5 minutes ago</span>
+      </div>
 
 
+      <div className='flex justify-between items-center mt-1'>
         <div className="flex justify-start items-center">
-          <img className='w-3 m-2' src={Address}/>
-          <span className='text-xs'>Richmond</span>
+          <img className='w-3 pr-1' src={Address}/>
+          <span className='text-xs'>{content.address}</span>
         </div>
+        <span className="text-xs w-auto px-4 rounded-md" style={{backgroundColor: 'rgba(251, 237, 150, 0.3)'}}>More v</span>
       </div>
-
-      <div className="2/7 flex flex-col justify-between">
-        <div>
-          <div className="flex justify-start items-center"> 
-            <img className='w-3 m-2' src={User} /> 
-            <span className='text-xs'>{content.name}</span>
-          </div>
-          <div className="flex justify-start items-center"> 
-            <img className='w-3 m-2' src={Time} /> 
-            <span className='text-xs'>9:00pm May 24</span>
-          </div>        
-        </div>
-        <div>
-          <span className="text-xs w-auto" style={{backgroundColor: '#FBED96'}}>Read More v</span>
-        </div>
-      </div>
-
-
-      </div>
+    </div>
   )
 }
+// backgroundColor: '#FBED96', filter: 'alpha(opacity=30)'
+const SoundVolune = ({rate, value}) => {
 
+  let color = '#FFDC00'
+  switch (rate) {
+    case 'good': 
+      color = '#9DC91F'      
+      break;
+    case 'normal':
+      color = '#FFDC00'        
+      break;
+    case 'worse':
+        color = '#BD3003'      
+        break;
+    default:
+      color = '#FFDC00'  
+    }
+
+  return (
+    <div>
+      <span className='text-5xl font-bold' style={{color: color}}>{value}</span>
+    </div>
+  )
+}
 export default PostCard;
 

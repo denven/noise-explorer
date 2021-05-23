@@ -3,6 +3,7 @@ import Header from './components/Header';
 import Search from './components/Search';
 import Find from './components/Find';
 import Posts from './components/Posts';
+
 import TestButton from './components/TestSound';
 // import Map from './Map'
 
@@ -15,14 +16,19 @@ function App() {
   const [mapData, setMapData] = useState([]);
 
   useEffect(() => {
+    try {
+      getMapData();
+    } catch (error) {
+      console.log('Get map data error')
+    }
     async function getMapData () {
       let res =  await axios.get('http://127.0.0.1:8080/map-data');
-      console.log('res', res);
-      setMapData(res, mapData);
-
+      console.log('map data:', res.data.status, res.data.data);
+      if(res.data.status === 0) {
+        setMapData(res.data.data);
+      }
     }
 
-    getMapData();
     return () => {
       console.log('clean up...')
     }
@@ -33,11 +39,11 @@ function App() {
     <div className='h-screen w-screen px-5 flex flex-col'>
       <Header />
       <Search />
-      <Find />
-      <div className="mt-4 h-1/3 border border-black"> <NewMap /></div>
+      {/* <Find /> */}
+      <div style={{height: window.innerWidth + 16}}></div>
+      <div className="w-full absolute left-0 top-24" style={{height: window.innerWidth}}> <NewMap /></div>
       {/* <Sound /> */}
-
-      <Posts posts={[{name: 'Alex', rate: 'good'}, {name: 'Judy', rate: 'bad'}, {name: 'Bob', rate: 'worse'}]} />
+      <Posts posts={mapData} />
       <TestButton />
     </div>
   );

@@ -15,7 +15,7 @@ const MapWithAMarkerClusterer = compose(
     googleMapURL:
       'https://maps.googleapis.com/maps/api/js?key=AIzaSyArxmStdE9PDwy92EsIBRmEUySRfX39PUk&v=3.exp&libraries=geometry,drawing,places',
     loadingElement: <div style={{ height: `100%` }} />,
-    containerElement: <div style={{ height: `400px` }} />,
+    containerElement: <div className='h-full' />,
     mapElement: <div style={{ height: `100%` }} />,
   }),
   withHandlers({
@@ -28,16 +28,16 @@ const MapWithAMarkerClusterer = compose(
   withScriptjs,
   withGoogleMap,
 )((props) => (
-  <GoogleMap defaultZoom={12} defaultCenter={{ lat: 25.0391667, lng: 121.525 }}>
+  <GoogleMap defaultZoom={10} defaultCenter={{ lat: 49.1666, lng: -123.1336 }}>
     <AutoComplete
-      className={'absolute px-6 top-8 h-8 inset-l-4 mt-6 border border-black rounded-xl flex justify-start text-xs'}
+      className={'absolute z-20 -top-16 ml-4 px-6 h-8 inset-l-4 mt-6 border border-black rounded-xl flex justify-start text-xs'}
       style={{width: searchWidth}}
       placeholder='enter your address here'
       onPlaceSelected={(place) => {
         console.log(place)
       }}
     />
-    <img className='absolute px-2 top-16 h-4 z-10' src={Magnifier} />
+    <img className='absolute px-2 left-4 -top-8 h-4 z-20' src={Magnifier} />
     <MarkerClusterer onClick={props.onMarkerClustererClick} averageCenter enableRetinaIcons gridSize={50}>
       {props.markers.map((marker) => (
         <Marker key={marker.photo_id} position={{ lat: marker.latitude, lng: marker.longitude }} />

@@ -1,14 +1,13 @@
 import React from 'react'
-import Filter from './Filter';
 import PostCard from './Card';
+import SortBy from './Sortby';
 
-const Posts = ({posts = ['Alex', 'Jason']}) => {
+const Posts = ({posts = []}) => {
   console.log('posts', posts)
   return (
     <div className="w-full h-8 mt-2 flex flex-col">
       <div className="flex items-center">
-      <h1 className='font-semibold'>All posts</h1>
-      <Filter name='Sort By'/>
+      <SortBy />
       </div>
 
       <div className='flex flex-col'>
