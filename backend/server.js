@@ -15,6 +15,8 @@ app.get('/map-data', function(req, res) {
   try {
     let data = fs.readFileSync(`./mapData.json`);
     let jsonData = JSON.parse(data).markers || [];
+    console.log(jsonData, data);
+
     res.setHeader('Content-Type', 'application/json');
     res.json({status: 0, data: jsonData});
   } catch (error) {
@@ -33,7 +35,7 @@ app.post('/add-data', function(req, res) {
     let data = fs.readFileSync(`./mapData.json`);
     let jsonData = JSON.parse(data).markers || [];
     jsonData.push(nweData);
-    const dataString = JSON.stringify(jsonData, null, 4);
+    const dataString = JSON.stringify({ "markers": jsonData}, null, 4);
     fs.writeFile(`./mapData.json`, dataString, (err, result) => {
       if (err) {
         console.log('Error in writing data into Json file', err);

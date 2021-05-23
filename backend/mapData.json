@@ -1,34 +1,28 @@
-[
-    {
-        "address": "6781 No 3 Rd, Richmond",
-        "rate": "good",
-        "volume": 48,
-        "timestamp": 1621781587,
-        "user": "Alex",
-        "city": "Richmond"
-    },
-    {
-        "address": "6781 No 3 Rd, Burnaby",
-        "rate": "normal",
-        "volume": 75,
-        "timestamp": 1621783587,
-        "user": "Alex",
-        "city": "Burnaby"
-    },
-    {
-        "address": "6781 No 3 Rd, Vancouver",
-        "rate": "worse",
-        "volume": 108,
-        "timestamp": 1621788587,
-        "user": "Alex",
-        "city": "Vancouver"
-    },
-    {
-        "address": "6781 No 3 Rd, Vancouver",
-        "rate": "worse",
-        "volume": 108,
-        "timestamp": 1621790842.003,
-        "user": "Alex",
-        "city": "Vancouver"
-    }
-]
+{
+    "markers": [
+        {
+            "address": "6781 No 3 Rd, Richmond",
+            "rate": "good",
+            "volume": 48,
+            "timestamp": 1621781587,
+            "user":  "Alex",
+            "city": "Richmond"
+        },
+        {
+            "address": "6781 No 3 Rd, Burnaby",
+            "rate": "normal",
+            "volume": 75,
+            "timestamp": 1621783587,
+            "user":  "Alex",
+            "city": "Burnaby"
+        },
+        {
+            "address": "6781 No 3 Rd, Vancouver",
+            "rate": "worse",
+            "volume": 108,
+            "timestamp": 1621788587,
+            "user":  "Alex",
+            "city": "Vancouver"
+        }
+    ]
+}
