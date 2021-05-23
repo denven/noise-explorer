@@ -32,7 +32,7 @@ function App() {
       // let res =  await axios.get('http://127.0.0.1:8080/map-data');
       console.log('map data:', res.data.status, res.data.data);
       if (res.data.status === 0) {
-        setMapData(res.data.data);
+        setMapData(res.data.data.reverse());
       }
     }
 
@@ -53,7 +53,7 @@ function App() {
       {/* <Sound /> */}
       <Posts posts={mapData} />
       <TestButton  onClick={showSoundPage}/>
-      { bShowSoundPage && <SoundMeter onClick={showSoundPage} />}
+      { bShowSoundPage && <SoundMeter onClick={showSoundPage}  setNewData={setMapData} />}
     </div>
   );
 }
