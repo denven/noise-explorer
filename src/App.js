@@ -1,3 +1,4 @@
+import NewMap from './NewMap'
 import Header from './components/Header';
 import Search from './components/Search';
 import Find from './components/Find';
@@ -42,4 +43,4 @@ function App() {
   );
 }
 
-export default App;
+export default App
