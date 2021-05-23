@@ -3,6 +3,7 @@ import Header from './components/Header';
 import Search from './components/Search';
 import Find from './components/Find';
 import Posts from './components/Posts';
+import Filters from './components/Filters';
 
 import TestButton from './components/TestSound';
 // import Map from './Map'
@@ -14,6 +15,7 @@ import axios from 'axios';
 
 function App() {
   const [mapData, setMapData] = useState([]);
+  const [bShowFilters, showFilters] = useState(false);
 
   useEffect(() => {
     try {
@@ -40,8 +42,9 @@ function App() {
   return (
     <div className='h-screen w-screen px-5 flex flex-col'>
       <Header />
-      <Search />
+      <Search onClick={showFilters} />
       {/* <Find /> */}
+      {bShowFilters && <Filters onClick={showFilters}/>}
       <div style={{height: window.innerWidth + 16}}></div>
       <div className="w-full absolute left-0 top-24" style={{height: window.innerWidth}}> <NewMap /></div>
       {/* <Sound /> */}
