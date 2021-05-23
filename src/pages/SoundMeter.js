@@ -5,11 +5,15 @@ import axios from 'axios';
 
 const SoudMeter = ({onClick, setNewData}) => {
 
+  function randomNumber(min, max) {  
+    return Math.floor(Math.random() * (max - min) + min); 
+  }  
+
   const sendData = async () => {
     let data = {
         "address": "6781 No 3 Rd, Vancouver",
         "rate": "worse",
-        "volume": 108,
+        "volume": randomNumber(30, 200),
         "timestamp": parseInt(Date.now() / 1000),
         "user":  "Alex",
         "city": "Vancouver"

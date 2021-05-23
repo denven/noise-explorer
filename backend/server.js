@@ -26,23 +26,22 @@ app.get('/map-data', function(req, res) {
 
 app.post('/add-data', function(req, res) {
 
-  const {data} = req.body;
-  console.log('new data:', data);
+  const {data: nweData} = req.body;
+  console.log('new data:', nweData);
 
   try {
     let data = fs.readFileSync(`./mapData.json`);
-    console.log('data request:', data);
-
-    const dataString = JSON.stringify({}, null, 4);
+    let jsonData = JSON.parse(data).markers || [];
+    jsonData.push(nweData);
+    const dataString = JSON.stringify(jsonData, null, 4);
     fs.writeFile(`./mapData.json`, dataString, (err, result) => {
       if (err) {
         console.log('Error in writing data into Json file', err);
         res.send({status: -1, msg: 'add data failed'});
       } else {
-        res.send({status: 0, 'msg': 'success'});
+        res.send({status: 0, data: jsonData, 'msg': 'success'});
       }
     });
-
   } catch (error) {
     console.log(error);
     res.send({status: -1, msg: 'add data failed'});
