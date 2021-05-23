@@ -12,7 +12,6 @@ class SoundCanvas extends Component {
 
   draw() {
     const { audioData } = this.props;
-    console.log(audioData);
     const canvas = this.canvas.current;
     const height = canvas.height;
     const width = canvas.width;

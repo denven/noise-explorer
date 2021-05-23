@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 
 const SoundMeter = () => {
   const [audioData, setAudioData] = useState(null);
+  const [averageDecibel, setAverageDecibel] = useState(null);
 
   const enableMicrophone = async () => {
     const audio = await navigator.mediaDevices.getUserMedia({
@@ -10,6 +11,10 @@ const SoundMeter = () => {
       video: false
     });
     setAudioData(audio);
+  }
+
+  const updateAverageDecibel = (value) => {
+    setAverageDecibel(value.toFixed(2));
   }
 
   const disableMicrophone = () => {
@@ -28,9 +33,11 @@ const SoundMeter = () => {
   return (
     <>
       <button onClick={toggleMicrophone}>
-        {audioData ? 'Stop microphone' : 'Get microphone input'}
+        {audioData ? 'Stop Testing' : `Let's Start`}
       </button>
-      {audioData ? <SoundDetecter audioData={audioData} /> : ''}
+      {audioData ? <SoundDetecter audioData={audioData} updateAverageDecibel={updateAverageDecibel} /> : ''}
+      {averageDecibel ? <div>{averageDecibel}dbi</div> : ''
+      }
     </>
   )
 }
