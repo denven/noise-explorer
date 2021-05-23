@@ -48,8 +48,8 @@ function App() {
       <Search onClick={showFilters} />
       {/* <Find /> */}
       {bShowFilters && <Filters onClick={showFilters} />}
-      <div style={{ height: window.innerWidth + 16 }}></div>
-      <div className="w-full absolute left-0 top-24" style={{ height: window.innerWidth }}> <NewMap /></div>
+      {/* <div style={{ height: window.innerWidth + 16 }}></div> */}
+      <div className="w-full relative left-0 top-0" style={{ height: window.innerWidth }}> <NewMap /></div>
       {/* <Sound /> */}
       <Posts posts={mapData} />
       <TestButton  onClick={showSoundPage}/>

@@ -13,7 +13,7 @@ const SoudMeter = ({onClick, setNewData}) => {
     let data = {
         "address": "6781 No 3 Rd, Vancouver",
         "rate": "worse",
-        "volume": randomNumber(30, 200),
+        "volume": randomNumber(30, 130),
         "timestamp": parseInt(Date.now() / 1000),
         "user":  "Alex",
         "city": "Vancouver"

@@ -30,14 +30,14 @@ const MapWithAMarkerClusterer = compose(
 )((props) => (
   <GoogleMap defaultZoom={10} defaultCenter={{ lat: 49.1666, lng: -123.1336 }}>
     <AutoComplete
-      className={'absolute z-20 -top-16 ml-4 px-6 h-8 inset-l-4 mt-6 border border-black rounded-xl flex justify-start text-xs'}
+      className={'absolute -top-16 px-6 h-8 inset-l-4 mt-6 border border-black rounded-xl flex justify-start text-xs'}
       style={{width: searchWidth}}
       placeholder='enter your address here'
       onPlaceSelected={(place) => {
         console.log(place)
       }}
     />
-    <img className='absolute px-2 left-4 -top-8 h-4 z-20' src={Magnifier} />
+    <img className='absolute px-2 -top-8 h-4 ' src={Magnifier} />
     <MarkerClusterer onClick={props.onMarkerClustererClick} averageCenter enableRetinaIcons gridSize={50}>
       {props.markers.map((marker) => (
         <Marker key={marker.photo_id} position={{ lat: marker.latitude, lng: marker.longitude }} />
