@@ -6,6 +6,8 @@ import Posts from './components/Posts';
 import Filters from './components/Filters';
 
 import TestButton from './components/TestSound';
+import SoundMeter from './pages/SoundMeter';
+
 // import Map from './Map'
 
 // import Sound from './components/Sound'
@@ -16,6 +18,7 @@ import axios from 'axios';
 function App() {
   const [mapData, setMapData] = useState([]);
   const [bShowFilters, showFilters] = useState(false);
+  const [bShowSoundPage, showSoundPage] = useState(false);
 
   useEffect(() => {
     try {
@@ -40,7 +43,7 @@ function App() {
 
 
   return (
-    <div className='h-screen w-screen px-5 flex flex-col'>
+    <div className='h-screen w-screen px-5 flex flex-col' style={{overflow: bShowSoundPage ? 'hidden' : 'auto'}}>
       <Header />
       <Search onClick={showFilters} />
       {/* <Find /> */}
@@ -49,7 +52,8 @@ function App() {
       <div className="w-full absolute left-0 top-24" style={{ height: window.innerWidth }}> <NewMap /></div>
       {/* <Sound /> */}
       <Posts posts={mapData} />
-      <TestButton />
+      <TestButton  onClick={showSoundPage}/>
+      { bShowSoundPage && <SoundMeter onClick={showSoundPage} />}
     </div>
   );
 }
