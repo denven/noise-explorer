@@ -1,4 +1,5 @@
-import React, { useReducer, useContext } from 'react'
+import React, { useReducer, useContext, useState } from 'react'
+import Geocode from 'react-geocode'
 import reducer from './reducer'
 import { TOGGLE_INFO } from './action'
 
@@ -16,41 +17,42 @@ const AppContext = React.createContext()
 
 const AppProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState)
+  const [geocode, setGeoCode] = useState()
 
   const toggleInfoBox = () => {
     dispatch({ type: TOGGLE_INFO })
   }
 
-  const findCity = (addresses) => {
-    let city = ''
-    for (let i = 0; i < addresses.length; i++) {
-      if (addresses[i].types[0] && 'addministrative_area_level_2' === addresses[i].types[0]) {
-        city = addresses[i].long_name
-      }
-    }
-    return city
+  Geocode.setApiKey('AIzaSyArxmStdE9PDwy92EsIBRmEUySRfX39PUk')
+
+  const placeGeo = async (address) => {
+    let response = await Geocode.fromAddress(address)
+    console.log('this is the geocode', response.results[0].geometry.location)
+    return response.results[0].geometry.location
+    //.then((response) => setGeoCode(response.results[0].geometry.location))
+    //console.log('this is the placeGeo', geocode)
   }
 
   const onPlaceSelected = (place) => {
-    console.log('this is the city here ====', findCity(place.address_components))
+    // console.log('this is the city here ====', findCity(place.address_components))
     const address = place.formatted_address
-    const city = place.address_components[0].long_name
-    const latValue = place.geometry.location.lat()
-    const lngValue = place.geometry.location.lng()
+    const userPos = placeGeo(address)
+    // const city = place.address_components[0].long_name
+    // const latValue = place.geometry.location.lat()
+    // const lngValue = place.geometry.location.lng()
 
     dispatch({
       type: 'SEARCH_PLACE',
       payload: {
         address: address,
-        city: city,
-        latValue: latValue,
-        lngValue: lngValue,
+        // city: city,
+        userPos: userPos,
       },
     })
   }
 
   return (
-    <AppContext.Provider value={{ ...initialState, toggleInfoBox, onPlaceSelected, findCity }}>
+    <AppContext.Provider value={{ ...initialState, toggleInfoBox, onPlaceSelected, placeGeo }}>
       {children}
     </AppContext.Provider>
   )

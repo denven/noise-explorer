@@ -1,4 +1,5 @@
 import NewMap from './NewMap'
+
 import Header from './components/Header';
 import Search from './components/Search';
 import Find from './components/Find';
@@ -13,6 +14,7 @@ import SoundMeter from './pages/SoundMeter';
 
 // import Sound from './components/Sound'
 
+
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
@@ -23,11 +25,12 @@ function App() {
 
   useEffect(() => {
     try {
-      getMapData();
+      getMapData()
     } catch (error) {
-      console.log('Get map data error')
+      // console.log('Get map data error')
     }
     async function getMapData() {
+
       // http://158.101.6.188:8080/map-data
       let res = await axios.get('http://158.101.6.188:8080/map-data');
       // let res =  await axios.get('http://127.0.0.1:8080/map-data');
@@ -42,12 +45,12 @@ function App() {
     }
   }, [])
 
-
   return (
     <div className='h-screen w-screen px-5 flex flex-col' style={{ overflow: bShowSoundPage ? 'hidden' : 'auto' }}>
       <Header />
       <Search onClick={showFilters} />
       {/* <Find /> */}
+
       {bShowFilters && <Filters onClick={showFilters} />}
       {/* <div style={{ height: window.innerWidth + 16 }}></div> */}
       <div className="w-full relative left-0 top-0" style={{ height: window.innerWidth }}> <NewMap /></div>
@@ -56,7 +59,7 @@ function App() {
       <TestButton onClick={showSoundPage} />
       { bShowSoundPage && <NoiseTestPage onClick={showSoundPage} setNewData={setMapData} />}
     </div>
-  );
+  )
 }
 
 export default App
