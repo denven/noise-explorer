@@ -21,11 +21,9 @@ const Map = () => {
           }}
         />
         <Marker position={userPos} onClick={toggleInforBox}>
-          {isInfoBoxShown && (
-            <InfoWindow>
-              <div>Spot infomation</div>
-            </InfoWindow>
-          )}
+          <InfoWindow>
+            <div>Spot infomation</div>
+          </InfoWindow>
         </Marker>
       </GoogleMap>
     )),
