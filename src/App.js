@@ -24,15 +24,21 @@ function App() {
     try {
       getMapData()
     } catch (error) {
-      console.log('Get map data error')
+      // console.log('Get map data error')
     }
     async function getMapData() {
       let res = await axios.get('http://158.101.6.188:8080/map-data')
-      console.log('map data:', res.data.status, res.data.data)
+      // console.log('map data:', res.data.status, res.data.data)
+      let markers = []
       if (res.data.status === 0) {
         let arr = res.data.data.map((addr) => Geocode.fromAddress(addr.address))
-        console.log('this is arr', arr)
-        setMapData(res.data.data)
+        Promise.all(arr).then((data) => {
+          for (let locationGeo of data) {
+            markers.push(locationGeo.results[0].geometry.location)
+          }
+          // console.log('this is the arrOfMarkers', markers)
+        })
+        setMapData(markers)
       }
     }
 
@@ -49,7 +55,7 @@ function App() {
       <div style={{ height: window.innerWidth + 16 }}></div>
       <div className='w-full absolute left-0 top-24' style={{ height: window.innerWidth }}>
         {' '}
-        <NewMap />
+        <NewMap markers={mapData} />
       </div>
       {/* <Sound /> */}
       <Posts posts={mapData} />
