@@ -1,0 +1,28 @@
+{
+    "markers": [
+        {
+            "address": "6781 No 3 Rd, Richmond",
+            "rate": "good",
+            "volume": 48,
+            "timestamp": 16000000,
+            "user":  "Alex",
+            "city": "Richmond"
+        },
+        {
+            "address": "6781 No 3 Rd, Burnaby",
+            "rate": "normal",
+            "volume": 75,
+            "timestamp": 16000000,
+            "user":  "Alex",
+            "city": "Burnaby"
+        },
+        {
+            "address": "6781 No 3 Rd, Vancouver",
+            "rate": "worse",
+            "volume": 108,
+            "timestamp": 16000000,
+            "user":  "Alex",
+            "city": "Vancouver"
+        }
+    ]
+}
