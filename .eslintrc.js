@@ -19,7 +19,7 @@ module.exports = {
     'import/no-duplicates': 'error',
     'import/no-unresolved': 'error',
     'import/named': 'error',
-    'prettier/prettier': ['error', { semi: true }], // Pass ESLint semi config to Prettier
+    'prettier/prettier': 0, //['error', { semi: true }], // Pass ESLint semi config to Prettier
     'react/no-typos': 'error',
     'react/no-unused-state': 'error',
     'react/jsx-no-bind': 'off', // arrow function is allowed to use as component prop

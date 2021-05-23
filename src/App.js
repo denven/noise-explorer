@@ -1,11 +1,20 @@
+import Header from './components/Header';
+import Search from './components/Search';
+import Find from './components/Find';
+import Posts from './components/Posts';
+import TestButton from './components/TestSound';
+
+
 function App() {
   return (
-    <div className='h-screen flex flex-col justify-center items-center'>
-      <div className='text-center mt-10 w-full bg-green-300'>
-        This is a React + Tailwind CSS boilerplate test project
-      </div>
+    <div className='h-screen w-screen px-5 flex flex-col'>
+      <Header />
+      <Search />
+      <Find />
+      <div className="mt-4 h-1/3 border border-black"></div>
 
-      <div className='flex-1 flex flex-col justify-center'>Team: PainKiller</div>
+      <Posts posts={[{name: 'Alex', rate: 'good'}, {name: 'Judy', rate: 'bad'}, {name: 'Bob', rate: 'worse'}]} />
+      <TestButton />
     </div>
   );
 }
