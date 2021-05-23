@@ -3,7 +3,7 @@ import reducer from './reducer'
 import { TOGGLE_INFO } from './action'
 
 const initialState = {
-  address: '', //search bar input
+  address: 'Vancouver', //search bar input
   city: '',
   timeZone: '',
   zoom: 12,
