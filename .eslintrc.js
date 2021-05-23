@@ -19,7 +19,7 @@ module.exports = {
     'import/no-duplicates': 'error',
     'import/no-unresolved': 'error',
     'import/named': 'error',
-    'prettier/prettier': ['error', { semi: true }], // Pass ESLint semi config to Prettier
+    'prettier/prettier': 0, //,['error', { semi: true }], // Pass ESLint semi config to Prettier
     'react/no-typos': 'error',
     'react/no-unused-state': 'error',
     'react/jsx-no-bind': 'off', // arrow function is allowed to use as component prop
@@ -32,7 +32,7 @@ module.exports = {
     'babel/no-invalid-this': 'error',
     // "semi": ["error", "always", { "omitLastInOneLineBlock": false }],
     'no-unexpected-multiline': 'error',
-    'no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
+    'no-unused-vars': 0, //['error', { argsIgnorePattern: '^_' }],
     'func-style': ['error', 'declaration', { allowArrowFunctions: true }], // Allow arrow function style in JSX props
     'react/prop-types': 'off', // turn off prop types check as eslint-plugin-react has a bug leading to complain all the time
   },
