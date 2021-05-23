@@ -35,6 +35,8 @@ module.exports = {
     'no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
     'func-style': ['error', 'declaration', { allowArrowFunctions: true }], // Allow arrow function style in JSX props
     'react/prop-types': 'off', // turn off prop types check as eslint-plugin-react has a bug leading to complain all the time
+    // eslint-disable-next-line no-dupe-keys
+    'prettier/prettier': 'off'
   },
   settings: {
     react: {

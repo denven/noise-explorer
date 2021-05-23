@@ -3999,6 +3999,11 @@ decamelize@^1.2.0:
   resolved "https://registry.yarnpkg.com/decamelize/-/decamelize-1.2.0.tgz#f6534d15148269b20352e7bee26f501f9a191290"
   integrity sha1-9lNNFRSCabIDUue+4m9QH5oZEpA=
 
+decibel-meter@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/decibel-meter/-/decibel-meter-2.0.0.tgz#7b1f11a7837562c514487f0d88f50e76c2893c8e"
+  integrity sha1-ex8Rp4N1YsUUSH8NiPUOdsKJPI4=
+
 decimal.js@^10.2.0:
   version "10.2.1"
   resolved "https://registry.yarnpkg.com/decimal.js/-/decimal.js-10.2.1.tgz#238ae7b0f0c793d3e3cea410108b35a2c01426a3"
