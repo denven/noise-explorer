@@ -57,6 +57,8 @@ const PostCard = ({content}) => {
 // backgroundColor: '#FBED96', filter: 'alpha(opacity=30)'
 const SoundVolune = ({rate, value}) => {
 
+  console.log(rate, value)
+
   let color = '#FFDC00'
   switch (rate) {
     case 'good': 
@@ -71,6 +73,7 @@ const SoundVolune = ({rate, value}) => {
     default:
       color = '#FFDC00'  
     }
+    console.log(rate, value, color)
 
   return (
     <div>

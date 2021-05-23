@@ -11,13 +11,23 @@ const NoiseTestPage = ({ onClick, setNewData }) => {
   }
 
   const sendData = async () => {
+    let volume = randomNumber(30, 130);
+    let rate =' good';
+    if(volume > 105) {
+      rate = 'worse';
+    } else if (volume >= 75) {
+      rate = 'normal';
+    } else {
+      rate = 'good';
+    }
+
     let data = {
-      "address": "6781 No 3 Rd, Vancouver",
-      "rate": "worse",
-      "volume": randomNumber(55, 80),
-      "timestamp": parseInt(Date.now() / 1000),
-      "user": "Alex",
-      "city": "Vancouver"
+        "address": "6781 No 3 Rd, Vancouver",
+        "rate": rate,
+        "volume": volume,
+        "timestamp": parseInt(Date.now() / 1000),
+        "user":  "Alex",
+        "city": "Vancouver"
     };
     console.log('will send data', data);
     let res = await axios.post('http://158.101.6.188:8080/add-data', { data });
