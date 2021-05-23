@@ -6,7 +6,7 @@ import Posts from './components/Posts';
 import Filters from './components/Filters';
 
 import TestButton from './components/TestSound';
-import SoundMeter from './pages/SoundMeter';
+import NoiseTestPage from './pages/NoiseTestPage';
 
 // import Map from './Map'
 
@@ -43,7 +43,7 @@ function App() {
 
 
   return (
-    <div className='h-screen w-screen px-5 flex flex-col' style={{overflow: bShowSoundPage ? 'hidden' : 'auto'}}>
+    <div className='h-screen w-screen px-5 flex flex-col' style={{ overflow: bShowSoundPage ? 'hidden' : 'auto' }}>
       <Header />
       <Search onClick={showFilters} />
       {/* <Find /> */}
@@ -52,8 +52,8 @@ function App() {
       <div className="w-full absolute left-0 top-24" style={{ height: window.innerWidth }}> <NewMap /></div>
       {/* <Sound /> */}
       <Posts posts={mapData} />
-      <TestButton  onClick={showSoundPage}/>
-      { bShowSoundPage && <SoundMeter onClick={showSoundPage} />}
+      <TestButton onClick={showSoundPage} />
+      { bShowSoundPage && <NoiseTestPage onClick={showSoundPage} />}
     </div>
   );
 }

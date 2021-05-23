@@ -1,5 +1,7 @@
 import SoundDetecter from './SoundDetecter'
 import React, { useState } from 'react';
+import HeadPhone from '../assets/images/headphone.png'
+
 
 const SoundMeter = () => {
   const [audioData, setAudioData] = useState(null);
@@ -32,11 +34,19 @@ const SoundMeter = () => {
 
   return (
     <>
-      <button onClick={toggleMicrophone}>
-        {audioData ? 'Stop Testing' : `Let's Start`}
-      </button>
+      <div onClick={() => toggleMicrophone()} className='fixed h-14 inset-x-12 bottom-60 mx-8 border font-medium border-white rounded-md flex justify-center items-center' style={{ backgroundColor: '#FBED96', boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)' }}>
+        {audioData ? 'Stop Testing' : `Start Recording`}
+      </div>
       {audioData ? <SoundDetecter audioData={audioData} updateAverageDecibel={updateAverageDecibel} /> : ''}
-      {averageDecibel ? <div>{averageDecibel}dbi</div> : ''
+      {/* #FFDC00 */}
+
+      {averageDecibel && !audioData ?
+        <div className='w-80 h-80 ml-auto mr-auto mt-24 text-center	rounded-full items-center justify-center flex' style={{ backgroundColor: '#FBED96' }}>
+          <div style={{ fontSize: '72px', fontWeight: '700', lineHeight: '108px' }}>
+            {averageDecibel}
+          </div>dbi
+
+        </div> : ''
       }
     </>
   )

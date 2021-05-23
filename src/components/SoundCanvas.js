@@ -20,7 +20,7 @@ class SoundCanvas extends Component {
     const sliceWidth = (width * 1.0) / audioData.length;
 
     canvasCtx.lineWidth = 2;
-    canvasCtx.strokeStyle = '#d6d6d6';
+    canvasCtx.strokeStyle = '#000000';
     canvasCtx.clearRect(0, 0, width, height);
 
     canvasCtx.beginPath();
@@ -40,7 +40,7 @@ class SoundCanvas extends Component {
 
   render() {
     return (
-      <canvas ref={this.canvas} width='300' height='300' />
+      <canvas ref={this.canvas} width='200' height='200' />
     );
   }
 }
