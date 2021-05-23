@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import { useGlobalContext } from './context'
 import AutoComplete from 'react-google-autocomplete'
 const fetch = require('isomorphic-fetch')
-const { compose, withProps, withHandlers } = require('recompose')
+const { compose, withProps, withHandlers, withStateHandlers } = require('recompose')
+const { InfoBox } = require('react-google-maps/lib/components/addons/InfoBox')
 const { withScriptjs, withGoogleMap, GoogleMap, Marker } = require('react-google-maps')
 const { MarkerClusterer } = require('react-google-maps/lib/components/addons/MarkerClusterer')
 
@@ -54,7 +54,7 @@ const NewMap = (props) => {
       const response = await fetch(url)
       const data = await response.json()
       console.log(data.photos.slice(0, 10))
-      setState({ markers: data.photos })
+      setState({ markers: data.photos.slice(0, 10) })
     } catch (err) {
       console.log(err)
     }
@@ -66,28 +66,4 @@ const NewMap = (props) => {
   return <MapWithAMarkerClusterer markers={state.markers} />
 }
 
-// class DemoApp extends React.PureComponent {
-//   UNSAFE_componentWillMount() {
-//     this.setState({ markers: [] })
-//   }
-
-//   componentDidMount() {
-//     const url = [
-//       // Length issue
-//       `https://gist.githubusercontent.com`,
-//       `/farrrr/dfda7dd7fccfec5474d3`,
-//       `/raw/758852bbc1979f6c4522ab4e92d1c92cba8fb0dc/data.json`,
-//     ].join('')
-
-//     fetch(url)
-//       .then((res) => res.json())
-//       .then((data) => {
-//         this.setState({ markers: data.photos })
-//       })
-//   }
-
-//   render() {
-//     return <MapWithAMarkerClusterer markers={this.state.markers} />
-//   }
-// }
 export default NewMap
