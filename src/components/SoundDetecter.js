@@ -44,8 +44,8 @@ class SoundDetecter extends Component {
   }
 
   average(a, n) {
-    var sum = 0;
-    for (var i = 0; i < n; i++) sum += a[i];
+    let sum = 0;
+    for (let i = 0; i < n; i++) sum += a[i];
     return parseFloat(sum / n);
   }
 
