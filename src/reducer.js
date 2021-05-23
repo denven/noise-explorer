@@ -6,12 +6,12 @@ const reducer = (state, action) => {
   }
 
   if (action.type === 'SEARCH_PLACE') {
-    const { address, city, latValue, lngValue } = action.payload
+    const { address } = action.payload
     return {
       ...state,
       address: address,
-      city: city,
-      userPos: { lat: latValue, lng: lngValue },
+      // city: city,
+      // userPos: { lat: latValue, lng: lngValue },
     }
   }
 

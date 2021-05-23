@@ -1,25 +1,20 @@
 import React, { useEffect, useState } from 'react'
 import AutoComplete from 'react-google-autocomplete'
-import Geocode from 'react-geocode'
+// import Geocode from 'react-geocode'
 import Magnifier from './assets/images/search.png'
 import { useGlobalContext } from './context'
 
 const fetch = require('isomorphic-fetch')
 const { compose, withProps, withHandlers, withStateHandlers } = require('recompose')
-const { InfoBox } = require('react-google-maps/lib/components/addons/InfoBox')
-const { withScriptjs, withGoogleMap, GoogleMap, Marker } = require('react-google-maps')
+const { withScriptjs, withGoogleMap, GoogleMap, Marker, InfoWindow } = require('react-google-maps')
 const { MarkerClusterer } = require('react-google-maps/lib/components/addons/MarkerClusterer')
 
 let searchWidth = window.innerWidth - 32 * 2 - 10
 
 const NewMap = (props) => {
-  const { onPlaceSelected, userPos, address } = useGlobalContext()
+  const { onPlaceSelected, userPos, address, placeGeo } = useGlobalContext()
   const [state, setState] = useState({ markers: [] })
-
-  Geocode.setApiKey('AIzaSyArxmStdE9PDwy92EsIBRmEUySRfX39PUk')
-  let geo = Geocode.fromAddress(address).then((response) => {
-    console.log(response.status, response.results[0].geometry.location)
-  })
+  const [pos, setPos] = useState(userPos)
 
   //HOCS
   const MapWithAMarkerClusterer = compose(
@@ -40,7 +35,7 @@ const NewMap = (props) => {
     withScriptjs,
     withGoogleMap,
   )((props) => (
-    <GoogleMap defaultZoom={10} defaultCenter={userPos}>
+    <GoogleMap defaultZoom={10} defaultCenter={pos}>
       <AutoComplete
         className={
           'absolute z-20 -top-16 ml-4 px-6 h-8 inset-l-4 mt-6 border border-black rounded-xl flex justify-start text-xs'
@@ -48,7 +43,9 @@ const NewMap = (props) => {
         style={{ width: searchWidth }}
         placeholder='enter your address here'
         onPlaceSelected={(place) => {
-          onPlaceSelected(place)
+          const lat = place.geometry.location.lat()
+          const lng = place.geometry.location.lng()
+          setPos({ lat: lat, lng: lng })
         }}
       />
       <img className='absolute px-2 left-4 -top-8 h-4 z-20' src={Magnifier} />
@@ -73,7 +70,7 @@ const NewMap = (props) => {
       const response = await fetch(url)
       const data = await response.json()
       console.log(data.photos.slice(0, 10))
-      setState({ markers: data.photos.slice(0, 10) })
+      setState({ markers: data.photos })
     } catch (err) {
       console.log(err)
     }
@@ -81,6 +78,11 @@ const NewMap = (props) => {
   useEffect(() => {
     fetchData(url)
   }, [url])
+  //   const Dummy_markers = [
+  //     { latitude: 49.16973, longitude: -123.133003 },
+  //     { latitude: 49.183804, longtitude: -123.134085 },
+  //   ]
+  //   setState({ markers: Dummy_markers })
 
   return <MapWithAMarkerClusterer markers={state.markers} />
 }
