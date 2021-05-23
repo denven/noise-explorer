@@ -2,11 +2,23 @@
 import React from 'react'
 import Amplify from './Amplify'
 import Address from '../assets/images/venue.png'
-import User from '../assets/images/user.png'
-import Time from '../assets/images/clock.png'
+import moment from 'moment';
 
 const PostCard = ({content}) => {
+
   console.log(content)
+
+  let timeAgo = moment.unix(content.timestamp).fromNow();
+  let timeDate = moment.unix(content.timestamp).format('HH:mm a DD MMM')
+  console.log(timeDate);
+  let ampm = timeDate.slice(0,2);
+  console.log(ampm)
+  if(Number(ampm >= 12)) {
+    ampm = 'Afernoon:';
+  } else {
+    ampm = 'Morning:';
+  }
+
   return (
     <div className="py-2" style={{boxShadow: '0px 2px 2px rgba(0, 0, 0, 0.1)'}}>
       <div className="w-full flex justify-between items-center rounded-xl">
@@ -27,8 +39,8 @@ const PostCard = ({content}) => {
     </div>
 
       <div className="flex justify-between">
-        <span className='text-xs font-light'>Afternoon: 9:00pm May 24</span>
-        <span className='font-light text-xs pr-6'>5 minutes ago</span>
+        <span className='text-xs font-light'>{ampm} {timeDate}</span>
+        <span className='font-light text-xs pr-6'>{timeAgo}</span>
       </div>
 
 
