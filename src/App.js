@@ -1,9 +1,8 @@
-import Map from './Map'
-import DemoApp from './NewMap'
+import NewMap from './NewMap'
 // import SearchBar from './SearchBar'
 
 function App() {
-  return <DemoApp />
+  return <NewMap />
 }
 
 export default App
