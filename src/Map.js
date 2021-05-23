@@ -1,16 +1,26 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { GoogleMap, Marker, withGoogleMap, withScriptjs, InfoWindow } from 'react-google-maps'
 // import { MarkerWithLabel } from 'react-google-maps/lib/components/addons/MarkerWithLabel'
 import { useGlobalContext } from './context'
+import AutoComplete from 'react-google-autocomplete'
 
 //HOCs
 
 const Map = () => {
-  const { isInfoBoxShown, toggleInforBox } = useGlobalContext()
+  const { isInfoBoxShown, toggleInforBox, onPlaceSelected, userPos } = useGlobalContext()
+  const [city, setCity] = useState()
+
   const MapWithAMarker = withScriptjs(
     withGoogleMap((props) => (
-      <GoogleMap defaultZoom={12} defaultCenter={{ lat: 49.16659, lng: -123.133569 }}>
-        <Marker position={{ lat: 49.16659, lng: -123.133569 }} onClick={console.log(isInfoBoxShown)}>
+      <GoogleMap defaultZoom={12} defaultCenter={userPos}>
+        <AutoComplete
+          className={'border-2 border-yellow-500 block w-full p-2 mt-2 rounded md:w-1/3 m-auto'}
+          onPlaceSelected={(place) => {
+            onPlaceSelected(place)
+            console.log(userPos)
+          }}
+        />
+        <Marker position={userPos} onClick={toggleInforBox}>
           {isInfoBoxShown && (
             <InfoWindow>
               <div>Spot infomation</div>
