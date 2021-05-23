@@ -27,6 +27,7 @@ const DummyData2 = [{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }, { id: 5 }, { id:
 const DummyData3 = [{ id: 1 }, { id: 2 }, { id: 3 }]
 const DummyData4 = [{ id: 1 }, { id: 2 }]
 
+
 const NewMap = (props) => {
   const { onPlaceSelected, userPos, address, placeGeo } = useGlobalContext()
   const [state, setState] = useState({ marker: [] })

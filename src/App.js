@@ -1,24 +1,27 @@
 import NewMap from './NewMap'
-import Header from './components/Header'
-import Search from './components/Search'
-import Find from './components/Find'
-import Posts from './components/Posts'
 
-import TestButton from './components/TestSound'
+import Header from './components/Header';
+import Search from './components/Search';
+import Find from './components/Find';
+import Posts from './components/Posts';
+import Filters from './components/Filters';
+
+import TestButton from './components/TestSound';
+import NoiseTestPage from './pages/NoiseTestPage';
+import SoundMeter from './pages/SoundMeter';
+
 // import Map from './Map'
 
 // import Sound from './components/Sound'
 
-import React, { useState, useEffect } from 'react'
-import axios from 'axios'
-import { useGlobalContext } from './context'
-import Geocode from 'react-geocode'
+
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
 function App() {
-  const { placeGeo } = useGlobalContext()
-  const [mapData, setMapData] = useState([])
-  Geocode.setApiKey('AIzaSyArxmStdE9PDwy92EsIBRmEUySRfX39PUk')
-  // Geocode.fromAddress(address)
+  const [mapData, setMapData] = useState([]);
+  const [bShowFilters, showFilters] = useState(false);
+  const [bShowSoundPage, showSoundPage] = useState(false);
 
   useEffect(() => {
     try {
@@ -27,18 +30,13 @@ function App() {
       // console.log('Get map data error')
     }
     async function getMapData() {
-      let res = await axios.get('http://158.101.6.188:8080/map-data')
-      // console.log('map data:', res.data.status, res.data.data)
-      let markers = []
+
+      // http://158.101.6.188:8080/map-data
+      let res = await axios.get('http://158.101.6.188:8080/map-data');
+      // let res =  await axios.get('http://127.0.0.1:8080/map-data');
+      console.log('map data:', res.data.status, res.data.data);
       if (res.data.status === 0) {
-        let arr = res.data.data.map((addr) => Geocode.fromAddress(addr.address))
-        Promise.all(arr).then((data) => {
-          for (let locationGeo of data) {
-            markers.push(locationGeo.results[0].geometry.location)
-          }
-          // console.log('this is the arrOfMarkers', markers)
-        })
-        setMapData(markers)
+        setMapData(res.data.data.reverse());
       }
     }
 
@@ -48,18 +46,18 @@ function App() {
   }, [])
 
   return (
-    <div className='h-screen w-screen px-5 flex flex-col'>
+    <div className='h-screen w-screen px-5 flex flex-col' style={{ overflow: bShowSoundPage ? 'hidden' : 'auto' }}>
       <Header />
-      <Search />
+      <Search onClick={showFilters} />
       {/* <Find /> */}
-      <div style={{ height: window.innerWidth + 16 }}></div>
-      <div className='w-full absolute left-0 top-24' style={{ height: window.innerWidth }}>
-        {' '}
-        <NewMap markers={mapData} />
-      </div>
+
+      {bShowFilters && <Filters onClick={showFilters} />}
+      {/* <div style={{ height: window.innerWidth + 16 }}></div> */}
+      <div className="w-full relative left-0 top-0" style={{ height: window.innerWidth }}> <NewMap /></div>
       {/* <Sound /> */}
       <Posts posts={mapData} />
-      <TestButton />
+      <TestButton onClick={showSoundPage} />
+      { bShowSoundPage && <NoiseTestPage onClick={showSoundPage} setNewData={setMapData} />}
     </div>
   )
 }
