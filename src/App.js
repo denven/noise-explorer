@@ -22,7 +22,9 @@ function App() {
       console.log('Get map data error')
     }
     async function getMapData () {
-      let res =  await axios.get('http://127.0.0.1:8080/map-data');
+      // http://158.101.6.188:8080/map-data
+      let res = await axios.get('http://158.101.6.188:8080/map-data');
+      // let res =  await axios.get('http://127.0.0.1:8080/map-data');
       console.log('map data:', res.data.status, res.data.data);
       if(res.data.status === 0) {
         setMapData(res.data.data);

@@ -19,17 +19,16 @@ const PostCard = ({content}) => {
       </div>
 
       <div className="right">
-        <div className="number">
+        <div className="">
           <SoundVolune rate={content.rate} value={content.volume} />
-          <span className='font-medium pl-1'>dbi</span>
         </div>
       </div>
 
     </div>
 
       <div className="flex justify-between">
-            <span className='text-xs font-light'>Afternoon: 9:00pm May 24</span>
-            <span className='font-light text-xs pr-6'>5 minutes ago</span>
+        <span className='text-xs font-light'>Afternoon: 9:00pm May 24</span>
+        <span className='font-light text-xs pr-6'>5 minutes ago</span>
       </div>
 
 
@@ -64,6 +63,7 @@ const SoundVolune = ({rate, value}) => {
   return (
     <div>
       <span className='text-5xl font-bold' style={{color: color}}>{value}</span>
+      <span className='font-medium pl-1'>dbi</span>
     </div>
   )
 }
