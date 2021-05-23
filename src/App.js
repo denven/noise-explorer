@@ -7,6 +7,7 @@ import Filters from './components/Filters';
 
 import TestButton from './components/TestSound';
 import NoiseTestPage from './pages/NoiseTestPage';
+import SoundMeter from './pages/SoundMeter';
 
 // import Map from './Map'
 
@@ -32,7 +33,7 @@ function App() {
       // let res =  await axios.get('http://127.0.0.1:8080/map-data');
       console.log('map data:', res.data.status, res.data.data);
       if (res.data.status === 0) {
-        setMapData(res.data.data);
+        setMapData(res.data.data.reverse());
       }
     }
 
@@ -48,12 +49,12 @@ function App() {
       <Search onClick={showFilters} />
       {/* <Find /> */}
       {bShowFilters && <Filters onClick={showFilters} />}
-      <div style={{ height: window.innerWidth + 16 }}></div>
-      <div className="w-full absolute left-0 top-24" style={{ height: window.innerWidth }}> <NewMap /></div>
+      {/* <div style={{ height: window.innerWidth + 16 }}></div> */}
+      <div className="w-full relative left-0 top-0" style={{ height: window.innerWidth }}> <NewMap /></div>
       {/* <Sound /> */}
       <Posts posts={mapData} />
       <TestButton onClick={showSoundPage} />
-      { bShowSoundPage && <NoiseTestPage onClick={showSoundPage} />}
+      { bShowSoundPage && <NoiseTestPage onClick={showSoundPage} setNewData={setMapData} />}
     </div>
   );
 }

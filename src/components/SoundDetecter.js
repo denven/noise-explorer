@@ -24,7 +24,7 @@ class SoundDetecter extends Component {
   recursion() {
     this.analyser.getByteTimeDomainData(this.dataArray);
     this.tmp = this.average(Object.values(this.dataArray), Object.keys(this.dataArray).length);
-    this.totalDecibel += this.tmp - 95;
+    this.totalDecibel += this.tmp / 12 * 3.5;
     this.totalDataSet += 1;
     // if (this.averageDecibel) { this.averageDecibel = this.tmp - 95 } else { this.averageDecibel = (this.tmp + this.averageDecibel - 95) / 2 }
     this.setState({ audioData: this.dataArray });

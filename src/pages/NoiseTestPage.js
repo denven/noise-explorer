@@ -2,8 +2,29 @@ import React, { useState } from 'react'
 import HeadPhone from '../assets/images/headphone.png'
 import Header from '../components/Header';
 import SoundMeter from '../components/SoundMeter';
+import axios from 'axios';
 
-const NoiseTestPage = ({ onClick }) => {
+const NoiseTestPage = ({ onClick, setNewData }) => {
+
+  function randomNumber(min, max) {
+    return Math.floor(Math.random() * (max - min) + min);
+  }
+
+  const sendData = async () => {
+    let data = {
+      "address": "6781 No 3 Rd, Vancouver",
+      "rate": "worse",
+      "volume": randomNumber(55, 80),
+      "timestamp": parseInt(Date.now() / 1000),
+      "user": "Alex",
+      "city": "Vancouver"
+    };
+    console.log('will send data', data);
+    let res = await axios.post('http://158.101.6.188:8080/add-data', { data });
+    console.log('updated data is:', res.data)
+    // setNewData(res.data.reverse())
+  }
+
   const [ifShowMeter, setIfShowMeter] = useState(false);
 
   const userClickOnButton = () => {
@@ -25,7 +46,13 @@ const NoiseTestPage = ({ onClick }) => {
             </svg> Back to Home
           </div>
           {/* <img src={HeadPhone} alt='header images' className='mt-32' /> */}
-          <div className='fixed h-14 inset-x-12 bottom-60 mx-8 border font-medium border-red rounded-md flex justify-center items-center' style={{ backgroundColor: '#d6d6d6', boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)' }} onClick={() => userClickOnButton()}>
+          <div className='fixed h-14 inset-x-12 bottom-60 mx-8 border font-medium border-red rounded-md flex justify-center items-center' style={{ backgroundColor: '#d6d6d6', boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)' }}
+            onClick={() => {
+              console.log('clicked');
+              sendData();
+              userClickOnButton()
+            }}
+          >
             Lets Start
           </div>
           <SoundMeter />
@@ -40,7 +67,12 @@ const NoiseTestPage = ({ onClick }) => {
           </div>
 
           <img src={HeadPhone} alt='header images' className='mt-32' />
-          <div className='fixed h-14 inset-x-12 bottom-60 mx-8 border font-medium border-white rounded-md flex justify-center items-center' style={{ backgroundColor: '#FBED96', boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)' }} onClick={() => userClickOnButton()}>
+          <div className='fixed h-14 inset-x-12 bottom-60 mx-8 border font-medium border-white rounded-md flex justify-center items-center' style={{ backgroundColor: '#FBED96', boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)' }}
+            onClick={() => {
+              console.log('clicked');
+              sendData();
+              userClickOnButton()
+            }}>
             Lets Start
           </div>
         </>

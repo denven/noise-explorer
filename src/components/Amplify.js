@@ -33,26 +33,26 @@ const VerticalBar = ({color}) => {
 
   let barStyle = 'w-2 h-4 flex-shrink-0 ';
   let barColor = '';
-
+ 
   switch (color) {
     case 'green':
-      barColor = 'bg-green-400'
+      barColor = '#9DC91F'
       break;
     case 'yellow':
-      barColor = 'bg-yellow-400'
+      barColor = '#FFDC00'
       break;
     case 'red':
-      barColor = 'bg-red-400'
+      barColor = '#BD3003'
       break;
     case 'gray':
-      barColor = 'bg-gray-200'
+      barColor = '#C4C4C4'
         break;
     default:
-      barColor = 'bg-gray-200'
+      barColor = '#C4C4C4'
   }
 
   return (
-    <div className={`${barStyle}${barColor}`} style={{width: 4, height: 12, marginLeft: 1.5, marginRight: 1.5}}></div>
+    <div className={barStyle} style={{width: 4, height: 12, marginLeft: 1.5, marginRight: 1.5, backgroundColor: barColor}}></div>
   )
 
 }
